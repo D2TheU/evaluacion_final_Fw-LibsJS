@@ -23,6 +23,7 @@ function createBoardData() {
                 }
             } while ((row[j - 1] == num && row[j - 2] == num) || columnRepeat);
             row.push(num);
+            $('.col-' + (j + 1))[0].innerHTML = '';
         }
         board.push(row);
     }
@@ -30,12 +31,27 @@ function createBoardData() {
 }
 
 function printBoard(board) {
-    console.log(board);
     for (var i = board.length - 1; i > -1; i--) {
         for (var j = 0; j < board[i].length; j++) {
-            $('.col-' + (j + 1)).prepend('<img class="candy-img" src="image/' + board[i][j] + '.png" class="dulce" />');
+            $('.col-' + (j + 1)).prepend('<img class="candy-img-' + (i + 1) + '-' + (j + 1) + '" src="image/' + board[i][j] + '.png" class="dulce" />');
+            var topStart = parseInt($('.candy-img-' + (i + 1) + '-' + (j + 1)).css('height')) * -(i + 1);
+            animateCandy($('.candy-img-' + (i + 1) + '-' + (j + 1)), topStart, board.length - i);
         }
     }
+}
+
+function animateCandy(candy, topStart, num) {
+    $(candy).css('opacity', '0');
+    var self = this;
+    candy.animate({
+        'top': topStart + 'px',
+        'opacity': 0
+    }, 75 * num, function() {
+        $(this).animate({
+            'top': 0,
+            'opacity': 1
+        }, 500)
+    });
 }
 //Document.Ready
 $(function() {
@@ -49,8 +65,7 @@ $(function() {
             board = createBoardData();
             printBoard(board);
         } else {
-            start = false;
-            this.innerHTML = 'Iniciar';
+            location.reload();
         }
     });
 });
