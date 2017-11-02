@@ -1,0 +1,1 @@
+var _env={chat_server:"https://ws1.nextu.com:3000",liveeditor_server:"https://ws1.nextu.com:3001"}

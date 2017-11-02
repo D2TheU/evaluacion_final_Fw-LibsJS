@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- saved from url=(0173)https://s3.amazonaws.com/nextu-content-production/Desarrollador_Web/05_Frameworks_Librerias_JavaScript/Componentes_del_Curso/Proyecto+final/WEBS16_C05_Proyecto_Final_V1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Proyecto Final</title>
+	<link rel="stylesheet" href="./bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="./styles.css" media="screen">
+</head>
+<body>
+<header>
+  <img src="./caja_codigo.png">
+  <span>¿Preparado para el reto del <strong>juego?</strong></span>
+</header>
+<div class="container general-container">
+	<div class="image-text">
+		<img src="./dado.png" alt="">
+	</div>
+	<p>En Internet puedes encontrar una gran cantidad de portales de juegos de uso gratuito y pago. Incluso, algunos de ellos, asociados a tus redes sociales. Y es que jugar es una actividad propia del ser humano y es útil para: aprender de manera divertida o simplemente para fugarse de las actividades diarias, en los tiempos libres.</p>
+	<p>Gracias a las nuevas tecnologías, los juegos y actividades virtuales se han convertido en una excelente manera de desarrollar habilidades cognitivas y estratégicas. Por eso es importante que fortalezcas tus destrezas en este tema.</p>
+
+	<center><h3>¡De eso se trata este proyecto final!</h3></center>
+	<hr>
+	<h2>Objetivo:</h2>
+	<p>Desarrollar un juego de asociación de imágenes poniendo en práctica tus conocimientos en los frameworks y librerías de JavaScript, haciendo uso de animaciones y efectos.</p>
+
+	<h2>Requerimientos generales:</h2>
+	<p>Para el desarrollo de este proyecto debes basarte en el siguiente <a href="https://s3.amazonaws.com/nextu-content-production/Desarrollador_Web/05_Frameworks_Librerias_JavaScript/Componentes_del_Curso/Proyecto+final/solucion/WEB16S_C5_codBaseJuego.zip" title="Proyecto Base" target="_blank">Proyecto Base </a> . Allí encontrarás el diseño de la página, el tablero de juego con una estructura de 7 filas y 7 columnas para ubicar los dulces, las imágenes de los dulces, y las pantallas que muestran información sobre el juego.</p>
+	<p>El videojuego que desarrolles debe permitir a un jugador iniciar una partida, en la que debe hacer emparejamientos de mínimo 3 dulces del mismo tipo en línea, al lograrlo, se deben sumar los puntos correspondientes y los dulces en cuestión deben desaparecer, permitiendo que más dulces generados aleatoriamente ocupen su lugar. El jugador con mayor cantidad de puntos al finalizar el tiempo es el ganador.</p>
+	<p>Los requerimientos específicos de este proyecto son:</p>
+
+	<div class=" blue-box-container">
+		<div class="col-md-6">
+			<div class="blue-box">
+				<div class="number">1</div>
+				<p>El título “Match Game” debe tener una animación que cambie de color después de determinado tiempo, posteriormente vuelva al color original, y permanezca cambiando entre dos colores indefinidamente.</p>
+				<video src="videos/1.mov" autoplay="" loop=""></video>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="blue-box">
+				<div class="number">2</div>
+				<p>Se deben generar los dulces aleatoriamente en el tablero, llenándolo todo al principio del juego. Cada vez que se realice una combinación de 3 dulces o más en línea, y posteriormente desaparezcan, estos espacios se deben llenar con los dulces inmediatamente anteriores verticalmente a los espacios; creando nuevos dulces aleatorios para llenar en la parte de arriba del tablero. Esto debe mostrar un efecto en el que la gravedad hace que todos los dulces se desplacen hacia abajo y se llenen los nuevos desde la parte superior del tablero.</p>
+				<img src="./captura1.png" alt="">
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="blue-box">
+				<div class="number">3</div>
+				<p>Verificar si hay como mínimo tres dulces del mismo tipo en línea, en caso tal, deben desaparecer con un efecto animado. Esto debe sumar puntos en el puntaje general.</p>
+				<video src="videos/3.mov" autoplay="" loop=""></video>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="blue-box">
+				<div class="number">4</div>
+				<p>El juego debe tener un temporizador a dos minutos, que inicie con el juego y al cumplirse el tiempo, cambie mediante animaciones el aspecto de la página eliminando el tablero de juego, y mostrando en toda la página el puntaje y el número de movimientos. Puedes aplicar un plugin externo de código abierto para implementar el temporizador en el proyecto.</p>
+				<video src="videos/4.mov" autoplay="" loop=""></video>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="blue-box">
+				<div class="number">5</div>
+				<p>Cada vez que el jugador realice un movimiento, debe aumentarse un contador que se muestra en pantalla.</p>
+				<img src="./captura2.png" alt="">
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="blue-box">
+				<div class="number">6</div>
+				<p>El botón de Iniciar en la parte inferior izquierda, debe cambiar su contenido a Reiniciar una vez se oprima por primera vez. Al presionar reiniciar se debe volver a cargar la página para empezar un nuevo juego.</p>
+				<video src="videos/6.mov" autoplay="" loop=""></video>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="blue-box">
+				<div class="number">7</div>
+				<p>La interacción del usuario con el elemento dulce debe ser de drag &amp; drop.</p>
+				<video src="videos/7.mov" autoplay="" loop=""></video>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="blue-box">
+				<div class="number">8</div>
+				<p>Cada vez que se alteren los elementos del tablero, se debe verificar si hay dulces en línea, no necesariamente con un movimiento del jugador se pueden anotar puntos.</p>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="blue-box">
+				<div class="number">9</div>
+				<p>Debes usar la función setTimeout de JavaScript para retrasar la ejecución de funciones según un tiempo determinado, con el fin de darle un orden a las animaciones y acciones que interactúan en el juego.</p>
+			</div>
+		</div>
+	</div>
+	<div class="header">
+		<span>Instrucciones para la entrega</span>
+	</div>
+	<p>Una vez finalices el proyecto, comprime la carpeta con los archivos y súbela al curso. Ten presentes los siguientes pasos para completar este último requerimiento, de la manera adecuada:</p>
+	<ol>
+		<li>
+			<p>En una carpeta guarda tu proyecto y todos los recursos que consideres necesarios para su funcionamiento. Demás, guarda un archivo <strong>github_url.txt</strong> que contenga la URL de tu proyecto versionado en el repositorio.</p>
+			<p>Recuerda que haciendo uso de Git Hub podrás crear tu portafolio de aplicaciones web.</p>
+		</li>
+		<li>
+			<p>Utiliza la siguiente estructura para nombrar la carpeta Zip que entregarás pues nos permitirá identificarte: <strong>NombreDelCurso_PrimerNombre_PrimerApellido.zip</strong></p>
+		</li>
+		<li>
+			<p>Para subir el Zip al curso:</p>
+			<ul>
+				<li>Accede a la página <strong>Evaluación final.</strong></li>
+				<li>Haz clic en <strong>Añadir envío.</strong></li>
+				<li>Agrega una descripción en la sección <strong>Texto en línea</strong> y adjunta la carpeta comprimida</li>
+				<li>en la sección <strong>Envíos de archivo.</strong></li>
+				<li>Haz clic en <strong>Guardar cambios.</strong></li>
+			</ul>
+		</li>
+	</ol>
+</div>
+ <script src="./jquery.min.js"></script>
+<script src="./bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body></html>
