@@ -91,7 +91,7 @@ div[class^='col'] {
     width: 99.4px;
     height: 96px;
 }
-img[class^='candy-img'] {
+img[class*='candy-img'] {
     height: 14%;
     width: 100%;
     max-width: 95px;
