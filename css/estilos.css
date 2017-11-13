@@ -96,4 +96,5 @@ img[class*='candy-img'] {
     width: 100%;
     max-width: 95px;
     position: relative;
+    user-select: none;
 }
