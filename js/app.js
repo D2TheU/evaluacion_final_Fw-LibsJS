@@ -54,6 +54,8 @@ function animateCandy(candy, topStart, num, i, j) {
     });
     $(candy).draggable({
         start: function() {
+            $(this).attr('data-x', $(this)[0].getBoundingClientRect().left);
+            $(this).attr('data-y', $(this)[0].getBoundingClientRect().top);
             $('img').css("z-index", "auto");
             $(this).css("z-index", "2");
         },
@@ -64,10 +66,15 @@ function animateCandy(candy, topStart, num, i, j) {
             };
             return !event;
         }
-    })
+    });
     $(candy).droppable({
         drop: function(event, ui) {
-            // console.log(ui.draggable.attr("class"));
+            $('img[class*="candy-img"]').draggable({
+                disabled: true
+            });
+            $(this).attr('data-x', $(this)[0].getBoundingClientRect().left);
+            $(this).attr('data-y', $(this)[0].getBoundingClientRect().top);
+            addMovement();
             var candyMoved = [
                 parseInt(ui.draggable.attr("class")[0]),
                 parseInt(ui.draggable.attr("class")[2])
@@ -76,8 +83,6 @@ function animateCandy(candy, topStart, num, i, j) {
                 parseInt($(this).attr("class")[0]),
                 parseInt($(this).attr("class")[2])
             ];
-            // console.log(candyMoved);
-            // console.log(candyDrop);
             var moveTo = [candyDrop[1] - candyMoved[1], candyDrop[0] - candyMoved[0]];
             if (moveTo[0] == -1 && moveTo[1] == 0) {
                 swapCandy(candyMoved, candyDrop, "left");
@@ -94,7 +99,7 @@ function animateCandy(candy, topStart, num, i, j) {
                 });
             }
         }
-    })
+    });
     candy.removeClass((i + 1) + '-' + (j + 1));
     candy[0].className = ((i + 1) + '-' + (j + 1)) + ' ' + candy[0].className;
 }
@@ -102,6 +107,8 @@ function animateCandy(candy, topStart, num, i, j) {
 function swapCandy(candyMoved, candyDrop, side) {
     var candy1 = $('.' + candyMoved[0] + '-' + candyMoved[1]);
     var candy2 = $('.' + candyDrop[0] + '-' + candyDrop[1]);
+    var difX = parseInt($('.' + candyDrop[0] + '-' + candyDrop[1]).attr("data-x") - $('.' + candyMoved[0] + '-' + candyMoved[1]).attr("data-x"));
+    var difY = parseInt($('.' + candyDrop[0] + '-' + candyDrop[1]).attr("data-y") - $('.' + candyMoved[0] + '-' + candyMoved[1]).attr("data-y"));
     switch (side) {
         case "left":
         case "right":
@@ -121,18 +128,35 @@ function swapCandy(candyMoved, candyDrop, side) {
             break;
     }
     candy1.animate({
-        top: 0,
-        left: 0
-    }, 0);
+        left: "-=" + difX,
+        top: "-=" + difY
+    }, 0, function() {
+        $(this).animate({
+            left: 0,
+            top: 0
+        }, 250);
+    });
     candy2.animate({
-        top: 0,
-        left: 0
-    }, 0);
+        left: 0 + difX,
+        top: 0 + difY
+    }, 0, function() {
+        $(this).animate({
+            left: 0,
+            top: 0
+        }, 200, function() {
+            $('img[class*="candy-img"]').draggable("enable");
+        });
+    });
 
     candy1.removeClass(candyMoved[0] + '-' + candyMoved[1]);
     candy2.removeClass(candyDrop[0] + '-' + candyDrop[1]);
     candy1[0].className = candyDrop[0] + '-' + candyDrop[1] + ' ' + candy1[0].className;
     candy2[0].className = candyMoved[0] + '-' + candyMoved[1] + ' ' + candy2[0].className;
+}
+// $('img[class*="candy-img"]').draggable({ disabled: true });
+// $('img[class*="candy-img"]').draggable("enable");
+function addMovement() {
+    $('#movimientos-text').text(parseInt($('#movimientos-text').text()) + 1);
 }
 //Document.Ready
 $(function() {
