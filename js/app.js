@@ -204,7 +204,7 @@ function checkBoard(mult) {
 }
 
 function deleteCandy(candyArr, mult) {
-    var speed = 300;
+    var speed = 200;
     for (var i = 0; i < candyArr.length; i++) {
         $('.' + candyArr[i]).animate({
             opacity: 0
@@ -225,10 +225,9 @@ function deleteCandy(candyArr, mult) {
             opacity: 1
         }, speed, function() {
             $(this).remove();
-            refillCandy(mult + 1);
+            refillCandy(mult + 0.5);
         });
         addPoints(10 * (i + 1) * mult);
-        console.log('10 * (' + i + ' + 1)' + ' * ' + mult + ' = ' + (10 * (i + 1) * mult));
     }
 }
 
@@ -265,6 +264,19 @@ function addPoints(value) {
     $('#score-text').text(parseInt($('#score-text').text()) + value);
 }
 
+function setTime(time) {
+    var min = '' + parseInt(time / 60);
+    var segs = '' + parseInt(time % 60);
+
+    if (min.length < 2) {
+        min = '0' + min;
+    }
+    if (segs.length < 2) {
+        segs = '0' + segs;
+    }
+    $('#timer').text(min + ':' + segs);
+}
+
 function addToArray(arr, term) {
     if (arr.indexOf(term) == -1) {
         arr.push(term);
@@ -274,14 +286,12 @@ function addToArray(arr, term) {
 
 function enableDrag() {
     if ($('img[class*="candy-img"]').draggable('option', 'disabled')) {
-        console.log("enable");
         $('img[class*="candy-img"]').draggable("enable");
     }
 }
 
 function disableDrag() {
     if (!$('img[class*="candy-img"]').draggable('option', 'disabled')) {
-        console.log('disable');
         $('img[class*="candy-img"]').draggable({
             disabled: true
         });
@@ -291,6 +301,8 @@ function disableDrag() {
 $(function() {
     var start = false;
     var board;
+    var time = 120;
+    setTime(time);
     color($(".main-titulo"), 500);
     $('.btn-reinicio').on('click', function functionName() {
         if (!start) {
@@ -298,6 +310,23 @@ $(function() {
             this.innerHTML = 'Reiniciar';
             board = createBoardData();
             printBoard(board);
+            var timer = setInterval(function() {
+                time--;
+                setTime(time);
+                if (time <= 0) {
+                    clearInterval(timer);
+                    $('.panel-tablero').hide('slow', function() {
+                        $('.panel-tablero').remove();
+                        $('.panel-score').prepend('<h2 class="end-titulo">Juego Terminado</h2>');
+                    });
+                    $('.panel-score').animate({
+                        width: '100%'
+                    }, 'slow');
+                    $('div.time').hide('slow', function() {
+                        $('div.time').remove();
+                    });
+                }
+            }, 1000);
         } else {
             location.reload();
         }

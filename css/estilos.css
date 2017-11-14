@@ -22,6 +22,13 @@ body {
     color: #DCFF0E;
     width: 100%;
 }
+.end-titulo {
+    font-family: gameFont;
+    font-size: 2em;
+    color: #DCFF0E;
+    width: 100%;
+    text-align: center;
+}
 .panel-tablero {
     width: 70%;
     border: 10px solid #E87306;
@@ -98,6 +105,6 @@ img[class*='candy-img'] {
     position: relative;
     user-select: none;
 }
-img[class*='ui-draggable-disabled']{
-    cursor: wait; 
+img[class*='ui-draggable-disabled'] {
+    cursor: wait;
 }
