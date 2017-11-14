@@ -98,3 +98,6 @@ img[class*='candy-img'] {
     position: relative;
     user-select: none;
 }
+img[class*='ui-draggable-disabled']{
+    cursor: wait; 
+}
